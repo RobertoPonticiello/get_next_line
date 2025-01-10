@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpontici <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 20:56:40 by rpontici          #+#    #+#             */
-/*   Updated: 2025/01/08 21:00:39 by rpontici         ###   ########.fr       */
+/*   Created: 2025/01/09 20:20:28 by rpontici          #+#    #+#             */
+/*   Updated: 2025/01/09 20:20:33 by rpontici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 t_fdata	*ft_updateindex(t_fdata *index, int fd)
 {
