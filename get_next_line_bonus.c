@@ -57,10 +57,12 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 static char	*gnl_loop(t_fdata *info, int fd)
 {
-	int	found_newline;
-	int	read_ret;
+	int		found_newline;
+	int		read_ret;
+	char	*line;
 
 	found_newline = 0;
+	line = NULL;
 	while (!found_newline)
 	{
 		info = ft_updateindex(info, fd);
@@ -74,7 +76,9 @@ static char	*gnl_loop(t_fdata *info, int fd)
 	}
 	if (!info->head)
 		return (NULL);
-	return (ft_join_chunks(info));
+	line = ft_join_chunks(info);
+	ft_free_chunks(info);
+	return (line);
 }
 
 char	*get_next_line(int fd)
@@ -90,8 +94,13 @@ char	*get_next_line(int fd)
 		if (!fd_array[fd])
 			return (NULL);
 	}
-	ft_free_chunks(fd_array[fd]);
 	line = gnl_loop(fd_array[fd], fd);
+	if (!line)
+	{
+		ft_free_chunks(fd_array[fd]);
+		free(fd_array[fd]);
+		fd_array[fd] = NULL;
+	}
 	return (line);
 }
 /*
@@ -108,8 +117,9 @@ int	main(void)
 		return (1);
 	}
 
-	while ((line = get_next_line(fd)) != NULL)
+	while (count < 10)
 	{
+		line = get_next_line(fd);
 		printf("%d) %s", count, line);
 		free(line);
 		count++;
