@@ -2,14 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: rpontici <marvin@42.fr>                    +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
-/*   Created: 2025/01/08 20:45:13 by rpontici          #+#    #+#             */
-/*   Updated: 2025/01/08 20:51:37 by rpontici         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpontici <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/12 19:45:10 by rpontici          #+#    #+#             */
+/*   Updated: 2025/01/12 19:46:16 by rpontici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +117,7 @@ int	main(void)
 		return (1);
 	}
 
-	while (count < 10)
+	while (count < 5)
 	{
 		line = get_next_line(fd);
 		printf("%d) %s", count, line);
