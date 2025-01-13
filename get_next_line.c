@@ -6,7 +6,7 @@
 /*   By: rpontici <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 19:45:10 by rpontici          #+#    #+#             */
-/*   Updated: 2025/01/12 19:46:16 by rpontici         ###   ########.fr       */
+/*   Updated: 2025/01/13 20:18:07 by rpontici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ t_fdata	*ft_newindex(void)
 	result->head = NULL;
 	result->tail = NULL;
 	return (result);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s && s[i])
-		i++;
-	return (i);
 }
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
@@ -83,25 +73,43 @@ static char	*gnl_loop(t_fdata *info, int fd)
 
 char	*get_next_line(int fd)
 {
-	static t_fdata	*fd_array[1024];
-	char			*line;
+	char	*line;
 
 	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!fd_array[fd])
+	if (!g_array[fd])
 	{
-		fd_array[fd] = ft_newindex();
-		if (!fd_array[fd])
+		g_array[fd] = ft_newindex();
+		if (!g_array[fd])
 			return (NULL);
 	}
-	line = gnl_loop(fd_array[fd], fd);
+	line = gnl_loop(g_array[fd], fd);
 	if (!line)
 	{
-		ft_free_chunks(fd_array[fd]);
-		free(fd_array[fd]);
-		fd_array[fd] = NULL;
+		ft_free_chunks(g_array[fd]);
+		free(g_array[fd]);
+		g_array[fd] = NULL;
 	}
 	return (line);
+}
+
+__attribute__((destructor))
+
+static void	gnl_cleanup(void)
+{
+	int	i;
+
+	i = 0;
+	while (i < 1024)
+	{
+		if (g_array[i])
+		{
+			ft_free_chunks(g_array[i]);
+			free(g_array[i]);
+			g_array[i] = NULL;
+		}
+		i++;
+	}
 }
 /*
 int	main(void)
@@ -124,6 +132,5 @@ int	main(void)
 		free(line);
 		count++;
 	}
-	close(fd);
 	return (0);
 }*/

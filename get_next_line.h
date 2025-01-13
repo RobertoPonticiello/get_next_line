@@ -38,6 +38,7 @@ typedef struct s_fdata
 	t_chunk	*tail;
 }	t_fdata;
 
+static t_fdata	*g_array[1024];
 char	*get_next_line(int fd);
 t_fdata	*ft_newindex(void);
 t_fdata	*ft_updateindex(t_fdata *index, int fd);
@@ -45,7 +46,6 @@ int		ft_read_and_collect(t_fdata *index, int *found_newline);
 char	*ft_join_chunks(t_fdata *index);
 void	ft_free_chunks(t_fdata *index);
 void	ft_add_chunk(t_fdata *index, const char *src, size_t len);
-size_t	ft_strlen(const char *s);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 #endif
