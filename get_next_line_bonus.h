@@ -38,7 +38,6 @@ typedef struct s_fdata
 	t_chunk	*tail;
 }	t_fdata;
 
-static t_fdata	*g_array[1024];
 char	*get_next_line(int fd);
 t_fdata	*ft_newindex(void);
 t_fdata	*ft_updateindex(t_fdata *index, int fd);

@@ -12,6 +12,8 @@
 
 #include "get_next_line.h"
 
+static t_fdata	*g_array[1024];
+
 t_fdata	*ft_newindex(void)
 {
 	t_fdata	*result;
