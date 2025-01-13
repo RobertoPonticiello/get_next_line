@@ -21,7 +21,6 @@ t_fdata	*ft_updateindex(t_fdata *index, int fd)
 		bytes_read = read(fd, index->buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
 		{
-			free(index);
 			return (NULL);
 		}
 		if (bytes_read == 0)

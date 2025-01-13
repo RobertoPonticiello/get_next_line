@@ -117,7 +117,7 @@ int	main(void)
 		return (1);
 	}
 
-	while (count < 10)
+	while (count < 5)
 	{
 		line = get_next_line(fd);
 		printf("%d) %s", count, line);
